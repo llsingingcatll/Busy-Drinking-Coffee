@@ -1,0 +1,349 @@
+:root {
+  --bg: #f9f9f6;
+  --surface: #fffdf8;
+  --surface-2: #f4eee3;
+  --text: #3a3f44;
+  --muted: #6f767c;
+  --primary: #8fa499;
+  --primary-dark: #6d8577;
+  --accent: #d4a373;
+  --accent-2: #f0d9b8;
+  --border: #ece7da;
+  --shadow: 0 14px 40px rgba(58, 63, 68, 0.06);
+  --shadow-soft: 0 8px 24px rgba(58, 63, 68, 0.04);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --container: 1120px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(143, 164, 153, 0.04), transparent 18%),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: var(--container);
+}
+
+.site-header {
+  background: rgba(249, 249, 246, 0.72);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.site-header.scrolled {
+  background: rgba(249, 249, 246, 0.94);
+  border-color: var(--border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.navbar-brand {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.nav-link {
+  color: var(--muted) !important;
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-dark) !important;
+}
+
+.social-link {
+  font-size: 1rem;
+}
+
+.hero-section {
+  padding: 180px 0 120px;
+  background:
+    radial-gradient(circle at top, rgba(212, 163, 115, 0.08), transparent 18%),
+    linear-gradient(180deg, #fcfcf8 0%, var(--bg) 100%);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--primary-dark);
+  margin-bottom: 0.9rem;
+}
+
+.hero-section h1 {
+  font-size: clamp(2.8rem, 4vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  max-width: 13ch;
+  letter-spacing: 0.02em;
+}
+
+.hero-section .lead {
+  color: var(--muted);
+  max-width: 52rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.78rem 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-outline-secondary {
+  color: var(--text);
+  border-color: var(--border);
+  border-radius: 999px;
+  padding: 0.78rem 1.2rem;
+}
+
+.btn-outline-secondary:hover {
+  background: var(--surface-2);
+  border-color: var(--primary);
+  color: var(--text);
+}
+
+.hero-meta {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.hero-meta div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-meta strong {
+  font-size: 1.5rem;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.hero-meta span {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.hero-image-wrap {
+  position: relative;
+  background: linear-gradient(145deg, var(--accent-2), #eef3eb);
+  border-radius: 32px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.hero-image-wrap::before,
+.hero-image-wrap::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(143, 164, 153, 0.18);
+  z-index: -1;
+}
+
+.hero-image-wrap::before {
+  width: 90px;
+  height: 90px;
+  left: -25px;
+  bottom: -20px;
+}
+
+.hero-image-wrap::after {
+  width: 140px;
+  height: 140px;
+  right: -40px;
+  top: -25px;
+}
+
+.hero-image {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.about-section,
+.portfolio-section,
+.contact-section {
+  padding: 120px 0;
+}
+
+.about-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border);
+}
+
+.about-image {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 6px);
+}
+
+.about-section h2,
+.section-heading h2,
+.contact-card h2 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.about-section p,
+.contact-card p,
+.portfolio-card p {
+  color: var(--muted);
+}
+
+.skill-list,
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-list span,
+.tag-list span {
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.88rem;
+}
+
+.section-heading {
+  margin-bottom: 2rem;
+}
+
+.portfolio-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(58, 63, 68, 0.08);
+}
+
+.portfolio-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.portfolio-card-body {
+  padding: 1.5rem;
+}
+
+.portfolio-card-body h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.contact-card {
+  background: linear-gradient(90deg, #f8efe2, #eef4ed);
+  border-radius: var(--radius);
+  padding: 4rem 2rem;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.contact-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.8rem;
+}
+
+.site-footer {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.site-footer p {
+  margin: 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+@media (max-width: 991px) {
+  .hero-section {
+    padding-top: 140px;
+  }
+
+  .hero-image {
+    height: 460px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 130px 0 90px;
+  }
+
+  .hero-meta {
+    gap: 1rem;
+  }
+
+  .about-image,
+  .hero-image {
+    height: 360px;
+  }
+
+  .contact-card {
+    padding: 3rem 1rem;
+  }
+}
