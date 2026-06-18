@@ -1,193 +1,522 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hana | Illustration Portfolio</title>
-  <meta name="description" content="Hana 的插畫與個人作品集網站，展現日系小清新風格的創作作品。">
+  <title>蟒著喝咖啡 Busy Drinking Coffee</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandWhite: '#FFFFFF',
+            brandPistachio: '#F3FAF5',
+            brandLime: '#AEEA00',
+            brandDark: '#1C2D27',
+            brandGray: '#7E8B85',
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'Noto Sans TC', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+          },
+          letterSpacing: {
+            widest: '.25em',
+            mega: '.4em',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .editorial-grid {
+      background-size: 40px 40px;
+      background-image: linear-gradient(to right, rgba(126, 139, 133, 0.03) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(126, 139, 133, 0.03) 1px, transparent 1px);
+    }
+    .text-stroke {
+      -webkit-text-stroke: 1px rgba(28, 45, 39, 0.2);
+      color: transparent;
+    }
+    html { scroll-behavior: smooth; }
+  </style>
 </head>
-<body>
-  <header class="site-header navbar navbar-expand-lg fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#home">Hana</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav align-items-lg-center gap-lg-3">
-          <li class="nav-item"><a class="nav-link" href="#about">關於我</a></li>
-          <li class="nav-item"><a class="nav-link" href="#portfolio">作品</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">聯絡</a></li>
-          <li class="nav-item">
-            <a class="nav-link social-link" href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link social-link" href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          </li>
-        </ul>
+<body class="bg-brandWhite text-brandDark font-sans leading-relaxed antialiased selection:bg-brandLime selection:text-brandDark">
+
+  <!-- 頂部導覽列 -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-brandWhite/80 backdrop-blur-md border-b border-brandDark/5">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#" class="navbar-brand flex items-center gap-3">
+        <img src="imgs/logo.png" alt="Busy Drinking Coffee" class="w-[100px] h-auto">
+        <span class="font-serif text-lg font-bold uppercase tracking-widest">Busy Drinking Coffee</span>
+      </a>
+      <nav class="hidden md:flex items-center space-x-10 text-xs tracking-widest uppercase font-medium">
+        <a href="#about" class="hover:text-brandLime transition-colors">About / 初心</a>
+        <a href="#stars" class="hover:text-brandLime transition-colors">Meet Stars / 明星大使</a>
+        <a href="#knowledge" class="hover:text-brandLime transition-colors">Knowledge / 知識闢謠</a>
+        <a href="#menu" class="hover:text-brandLime transition-colors">Menu / 綠意特調</a>
+        <a href="#booking" class="hover:text-brandLime transition-colors">Booking / 預約邂逅</a>
+      </nav>
+      <div class="flex items-center space-x-4">
+        <a href="#booking" class="hidden sm:inline-block border border-brandDark text-brandDark hover:bg-brandDark hover:text-brandWhite transition-all duration-300 px-5 py-2 text-[11px] tracking-widest uppercase">Reservation</a>
+        <button id="mobileMenuBtn" class="md:hidden text-xl focus:outline-none p-2"><i class="fa-solid fa-bars-staggered"></i></button>
       </div>
+    </div>
+    <div id="mobileMenu" class="hidden fixed inset-0 top-20 bg-brandWhite z-40 flex flex-col p-8 space-y-6 text-sm tracking-widest font-medium border-t border-brandDark/5">
+      <a href="#about" class="mobile-link py-2 border-b border-brandDark/5">About / 初心</a>
+      <a href="#stars" class="mobile-link py-2 border-b border-brandDark/5">Meet Stars / 明星大使</a>
+      <a href="#knowledge" class="mobile-link py-2 border-b border-brandDark/5">Knowledge / 知識闢謠</a>
+      <a href="#menu" class="mobile-link py-2 border-b border-brandDark/5">Menu / 綠意特調</a>
+      <a href="#booking" class="mobile-link py-2 border-b border-brandDark/5">Booking / 預約邂逅</a>
+      <a href="#booking" class="mobile-link inline-block bg-brandDark text-brandWhite text-center py-3 mt-4">預約一場綠意邂逅</a>
     </div>
   </header>
 
-  <main>
-    <section class="hero-section" id="home">
-      <div class="container">
-        <div class="row align-items-center gy-5">
-          <div class="col-lg-6" data-aos="fade-right">
-            <span class="eyebrow">Illustration & Visual Storytelling</span>
-            <h1>把溫柔的想像，畫進每一個故事裡。</h1>
-            <p class="lead">我是一名插畫工作者，專注於角色設計、品牌視覺與生活感插畫，將細節與氛圍轉化成能被記住的作品。</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary btn-lg" href="#portfolio">查看作品</a>
-              <a class="btn btn-outline-secondary btn-lg" href="#contact">聯絡我</a>
-            </div>
-            <div class="hero-meta">
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center pt-24 pb-12 relative overflow-hidden editorial-grid">
+    <div class="absolute right-0 top-0 w-1/2 h-full bg-brandPistachio z-0 hidden lg:block"></div>
+    <div class="absolute right-8 top-1/4 bottom-1/4 w-[1px] bg-brandLime z-10 hidden lg:block"></div>
+    <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+      <div class="lg:col-span-6 space-y-8 py-8">
+        <div class="inline-flex items-center space-x-3 text-xs tracking-widest text-brandGray">
+          <span class="w-8 h-[1px] bg-brandLime"></span>
+          <span class="uppercase">TIME TO BLOOM & RELAX</span>
+        </div>
+        <div class="space-y-4">
+          <h2 class="font-serif text-3xl sm:text-4xl text-brandGray font-light tracking-widest uppercase">Busy Drinking Coffee</h2>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-widest leading-tight text-brandDark">
+            今天不忙，<br>只<span class="border-b-4 border-brandLime">蟒</span>著喝咖啡。
+          </h1>
+        </div>
+        <p class="text-brandGray text-sm tracking-widest leading-relaxed max-w-md font-light">在喧囂、高速的都市人海中，給自己一處放空留白的溫柔角落。慢條斯理的溫度，治癒緊繃的身心。今天，把喧鬧關在門外，和慢吞吞的爬爬們，一起奢侈地浪費時光。</p>
+        <div class="pt-4">
+          <a href="#booking" class="inline-flex items-center space-x-4 bg-brandLime hover:bg-brandDark hover:text-brandWhite text-brandDark font-medium px-8 py-4 text-xs tracking-widest uppercase transition-all duration-500 shadow-[0_4px_20px_rgba(174,234,0,0.3)] hover:shadow-none group">
+            <span>預約一場綠意邂逅</span>
+            <i class="fa-solid fa-arrow-right-long transform group-hover:translate-x-2 transition-transform"></i>
+          </a>
+        </div>
+        <div class="pt-8 flex items-center space-x-8 text-[11px] tracking-widest text-brandGray border-t border-brandDark/5 max-w-sm">
+          <div><span class="font-bold text-brandDark">01</span> / ESSAY</div>
+          <div><span class="font-bold text-brandDark">02</span> / STORY 2026</div>
+          <div><span class="font-bold text-brandDark">03</span> / FLOWERS & REPTILES</div>
+        </div>
+      </div>
+      <div class="lg:col-span-6 relative">
+        <div class="relative w-full aspect-[4/3] sm:aspect-square md:aspect-[4/3] bg-brandPistachio p-3 sm:p-6 shadow-sm border border-brandDark/5">
+          <div class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-brandLime/60"></div>
+          <div class="w-full h-full bg-cover bg-center relative overflow-hidden flex items-end justify-between p-6" style="background-image: url('/imgs/1.jpg');">
+            <div class="absolute inset-0 bg-gradient-to-t from-brandDark/60 via-transparent to-transparent"></div>
+            <div class="relative z-10 text-brandWhite text-left w-full flex justify-between items-end">
               <div>
-                <strong>8+</strong>
-                <span>專案經驗</span>
+                <span class="text-[10px] tracking-widest uppercase text-brandLime font-medium">Salon Portrait 2026</span>
+                <p class="font-serif italic text-lg text-white">"Beautiful Impression Days"</p>
               </div>
-              <div>
-                <strong>15</strong>
-                <span>合作品牌</span>
-              </div>
+            
+          </div>
+        </div>
+        <div class="absolute -bottom-8 -left-6 bg-white border border-brandDark/5 p-4 hidden md:flex items-center space-x-4 max-w-xs shadow-md">
+          <div class="w-10 h-10 rounded-full bg-brandPistachio flex items-center justify-center text-brandDark">
+            <i class="fa-solid fa-leaf text-xs"></i>
+          </div>
+          <div class="text-left">
+            <h4 class="text-xs font-bold tracking-wider">綠意盎然的溫室體驗</h4>
+            <p class="text-[10px] text-brandGray">恆溫恆濕的城市特寵綠洲</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 bg-brandWhite relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div class="lg:col-span-5 space-y-8 lg:sticky lg:top-28">
+          <div class="space-y-3">
+            <span class="text-xs tracking-widest text-brandLime font-semibold uppercase">Our Devotion / 我們的承諾</span>
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-widest leading-tight">在慢條斯理的溫柔裡，<br>看見生命的原色。</h2>
+          </div>
+          <div class="space-y-6 text-sm text-brandGray tracking-widest leading-relaxed font-light">
+            <p>「蟒著喝咖啡 (Busy Drinking Coffee)」的誕生，源於一份對遺棄生命的溫柔承諾。店內的特寵大使們，多數來自臉書社團等平台的棄養救援。我們將這群曾被貼上「冷血」標籤、失去庇護的爬爬接回家，給予牠們最頂級的福利與細心呵護。</p>
+            <p class="border-l-2 border-brandLime pl-4 py-1 text-brandDark italic bg-brandPistachio/50">這裡不只是一間咖啡廳，更是一個「生命教育空間」。我們提供乾淨、精緻、充滿綠意的無壓環境，讓害羞溫柔的特寵孩子們化身親善大使，向世人展現牠們獨特而美麗的靈魂，逐步消除大眾對爬蟲類的誤解與偏見。</p>
+          </div>
+        </div>
+        <div class="lg:col-span-7 space-y-12">
+          <div class="grid grid-cols-12 gap-4">
+            <div class="col-span-8 aspect-[4/3] bg-cover bg-center shadow-sm border border-brandDark/5 relative overflow-hidden group" style="background-image: url('/imgs/5.png');">
+              <div class="absolute inset-0 bg-brandDark/40 flex items-center justify-center opacity-100 group-hover:bg-brandDark/60 transition-all"></div>
+            </div>
+            <div class="col-span-4 aspect-square bg-brandPistachio flex flex-col justify-between p-4">
+              <span class="text-3xl font-serif text-brandDark/10">01</span>
+              <p class="text-[10px] tracking-widest text-brandGray leading-normal">與爬蟲一起在午後的陽光下悠閒放空</p>
+            </div>
+            <div class="col-span-4 aspect-square bg-cover bg-center border border-brandDark/5 relative overflow-hidden group" style="background-image: url('/imgs/6.png');">
+              <div class="absolute inset-0 bg-brandDark/40 flex items-center justify-center opacity-100 group-hover:bg-brandDark/60 transition-all"></div>
+            </div>
+            <div class="col-span-8 aspect-[16/9] bg-cover bg-center shadow-sm border border-brandDark/5 relative overflow-hidden group" style="background-image: url('/imgs/7.png');">
+              <div class="absolute inset-0 bg-brandDark/40 flex items-center justify-center opacity-100 group-hover:bg-brandDark/60 transition-all"></div>
             </div>
           </div>
-          <div class="col-lg-6" data-aos="fade-left">
-            <div class="hero-image-wrap">
-              <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&w=900&q=80" alt="Illustration artist working" class="hero-image">
+          <div class="space-y-6 pt-6">
+            <h3 class="text-xs tracking-widest uppercase font-bold text-brandDark border-b border-brandDark/10 pb-4">Space Quality & Standards / 空間與專業標準</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="space-y-3 p-4 bg-brandPistachio hover:bg-brandWhite hover:shadow-md transition-all duration-300 border border-transparent hover:border-brandDark/5">
+                <div class="w-8 h-8 rounded-full bg-brandWhite text-brandDark flex items-center justify-center shadow-sm"><i class="fa-solid fa-wind text-xs"></i></div>
+                <h4 class="text-xs font-bold tracking-widest text-brandDark">專業恆溫與日常消毒</h4>
+                <p class="text-[11px] text-brandGray tracking-wider leading-relaxed">嚴格控制全店溫濕度。互動區域定時紫外線與醫療級物理消毒，守護人寵雙向健康與最高衛生標準。</p>
+              </div>
+              <div class="space-y-3 p-4 bg-brandPistachio hover:bg-brandWhite hover:shadow-md transition-all duration-300 border border-transparent hover:border-brandDark/5">
+                <div class="w-8 h-8 rounded-full bg-brandWhite text-brandDark flex items-center justify-center shadow-sm"><i class="fa-solid fa-hands-holding-child text-xs"></i></div>
+                <h4 class="text-xs font-bold tracking-widest text-brandDark">愛心領養與生命教育</h4>
+                <p class="text-[11px] text-brandGray tracking-wider leading-relaxed">我們堅持不販售生命。與動保組織、救援平台合作，宣導正確飼養觀念，並協助通過評估的合適家庭進行暖心領養。</p>
+              </div>
+              <div class="space-y-3 p-4 bg-brandPistachio hover:bg-brandWhite hover:shadow-md transition-all duration-300 border border-transparent hover:border-brandDark/5">
+                <div class="w-8 h-8 rounded-full bg-brandWhite text-brandDark flex items-center justify-center shadow-sm"><i class="fa-solid fa-graduation-cap text-xs"></i></div>
+                <h4 class="text-xs font-bold tracking-widest text-brandDark">新手親切互動引導</h4>
+                <p class="text-[11px] text-brandGray tracking-wider leading-relaxed">零經驗也無需擔心。特寵飼育專家全程隨伺在側，溫柔指導抱持姿勢與互動細節，讓您安全又放心地與生命對話。</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="about-section" id="about">
-      <div class="container">
-        <div class="row gy-5 align-items-center">
-          <div class="col-lg-5" data-aos="fade-up">
-            <div class="about-card">
-              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Portrait of Hana" class="about-image">
+  <!-- Stars Section -->
+  <section id="stars" class="py-24 bg-brandPistachio relative">
+    <div class="max-w-7xl mx-auto px-6 text-center space-y-16">
+      <div class="max-w-xl mx-auto space-y-4">
+        <span class="text-xs tracking-widest text-brandLime font-semibold uppercase">Meet Our Stars / 遇見最閃耀的活寶石</span>
+        <h2 class="text-3xl font-bold tracking-widest">店內最傲嬌的生命藝術品</h2>
+        <p class="text-xs text-brandGray tracking-widest leading-relaxed font-light">牠們曾因各種偏見或環境變故被遺棄，如今，在悉心呵護與愛中綻放獨特光彩。牠們是這裡最耀眼、最治癒的活寶石。</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+
+        <!-- 卡片 1 - 芭娜娜 -->
+        <div class="bg-brandWhite p-6 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden transform hover:-translate-y-2 border border-brandDark/5">
+          <div class="space-y-6">
+            <div class="aspect-square w-full bg-cover bg-center overflow-hidden relative" style="background-image: url('/imgs/2.png');">
+              <div class="absolute inset-0 bg-brandDark/5 group-hover:bg-transparent transition-colors duration-300"></div>
+              <span class="absolute top-3 left-3 bg-brandWhite text-brandDark text-[9px] font-bold tracking-widest px-2 py-1 uppercase">Rescue No. 01</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold tracking-widest">芭娜娜 (Banana)</h3>
+                <span class="text-[10px] tracking-widest bg-brandLime/20 text-brandDark px-2 py-0.5 rounded font-medium">香蕉球蟒 🐍</span>
+              </div>
+              <p class="text-xs tracking-widest text-brandGray font-medium">身世：畢業大學生因家人強烈反對，面臨無處可去的危機</p>
+            </div>
+            <p class="text-xs text-brandGray tracking-widest leading-relaxed font-light">性格極度膽小害羞、溫和得不可思議。亮麗的淡黃色花紋，像是成熟得剛剛好的香蕉。最喜歡慢慢地盤旋在客人的手腕上，用微溫的體溫傳遞安定的力量，就像一條溫暖天然的活手環。</p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-brandDark/5 flex justify-between items-center text-[10px] tracking-widest text-brandGray">
+            <span>「抱抱我時，請輕柔呼吸唷。」</span>
+            <span class="font-serif italic font-bold text-brandDark">Soft Touch</span>
+          </div>
+        </div>
+
+        <!-- 卡片 2 - 大橘 -->
+        <div class="bg-brandWhite p-6 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden transform hover:-translate-y-2 border border-brandDark/5">
+          <div class="space-y-6">
+            <div class="aspect-square w-full bg-cover bg-center overflow-hidden relative" style="background-image: url('/imgs/3.jpg');">
+              <div class="absolute inset-0 bg-brandDark/5 group-hover:bg-transparent transition-colors duration-300"></div>
+              <span class="absolute top-3 left-3 bg-brandWhite text-brandDark text-[9px] font-bold tracking-widest px-2 py-1 uppercase">Rescue No. 02</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold tracking-widest">大橘 (Orange)</h3>
+                <span class="text-[10px] tracking-widest bg-brandLime/20 text-brandDark px-2 py-0.5 rounded font-medium">蜜橘豹紋守宮 🦎</span>
+              </div>
+              <p class="text-xs tracking-widest text-brandGray font-medium">身世：倒閉培育坊中因脫皮不順，腳趾乾枯險些壞死的孩子</p>
+            </div>
+            <p class="text-xs text-brandGray tracking-widest leading-relaxed font-light">在細心照料與藥浴後重獲新生。圓滾滾的大眼睛與嘴角自帶的招牌微笑，是店內的人氣發電機。超級貪吃又親人，一看到有人靠近，就會興奮地扒著玻璃、歪著頭討要美味點心，充滿朝氣。</p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-brandDark/5 flex justify-between items-center text-[10px] tracking-widest text-brandGray">
+            <span>「哈囉！今天帶了什麼好吃的嗎？」</span>
+            <span class="font-serif italic font-bold text-brandDark">Smiling Boy</span>
+          </div>
+        </div>
+
+        <!-- 卡片 3 - 睫毛膏 -->
+        <div class="bg-brandWhite p-6 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between group relative overflow-hidden transform hover:-translate-y-2 border border-brandDark/5">
+          <div class="space-y-6">
+            <div class="aspect-square w-full bg-cover bg-center overflow-hidden relative" style="background-image: url('/imgs/4.png');">
+              <div class="absolute inset-0 bg-brandDark/5 group-hover:bg-transparent transition-colors duration-300"></div>
+              <span class="absolute top-3 left-3 bg-brandWhite text-brandDark text-[9px] font-bold tracking-widest px-2 py-1 uppercase">Rescue No. 03</span>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold tracking-widest">睫毛膏 (Mascara)</h3>
+                <span class="text-[10px] tracking-widest bg-brandLime/20 text-brandDark px-2 py-0.5 rounded font-medium">睫角守宮 🦎</span>
+              </div>
+              <p class="text-xs tracking-widest text-brandGray font-medium">身世：特寵展後被衝動購買，後因不願繁瑣照顧求接手</p>
+            </div>
+            <p class="text-xs text-brandGray tracking-widest leading-relaxed font-light">擁有迷人的「眼睫毛」鱗片，眼神總是透露著無辜。是個一流的攀爬高手，腳掌的黏附力讓牠能輕鬆倒掛在樹枝上。性格活潑充滿好奇心，偶爾會突然朝你「起飛」玩躲貓貓，讓人驚呼連連。</p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-brandDark/5 flex justify-between items-center text-[10px] tracking-widest text-brandGray">
+            <span>「猜猜看我等一下會跳到哪裡？」</span>
+            <span class="font-serif italic font-bold text-brandDark">Playful Jumper</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Knowledge Section -->
+  <section id="knowledge" class="py-24 bg-brandWhite">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center space-y-4 mb-20">
+        <span class="text-xs tracking-widest text-brandLime font-semibold uppercase">Knowledge Hub / 爬爬科學室</span>
+        <h2 class="text-3xl font-bold tracking-widest">用正確的認識，融化冰冷的誤解</h2>
+        <p class="text-xs text-brandGray tracking-widest font-light">生命本無冷血與溫血之分，當我們跨越偏見，便能感受溫柔。</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div class="lg:col-span-6 space-y-8">
+          <div class="inline-flex items-center space-x-3 text-xs tracking-widest text-brandDark font-bold uppercase mb-4">
+            <span class="w-2 h-2 bg-brandLime"></span>
+            <span>趣味闢謠 Q&A</span>
+          </div>
+          <div class="space-y-6">
+            <div class="p-7 bg-brandPistachio border-l-4 border-brandLime space-y-3">
+              <h4 class="text-xs font-bold tracking-wider text-brandDark flex items-center space-x-2">
+                <span class="text-brandLime font-serif text-lg">Q.</span>
+                <span>蛇摸起來會黏黏的可怕嗎？</span>
+              </h4>
+              <p class="text-[11px] text-brandGray tracking-widest leading-relaxed font-light"><strong class="text-brandDark">A. 恰恰相反！</strong> 牠們的皮膚完全沒有汗腺，身上覆蓋的是乾燥的鱗片。摸起來溫潤、極其乾爽，觸感就像是奢華高質感的頂級皮包或絲綢。甚至因為體溫隨著環境改變，在夏天摸起來冰涼又消暑，是完美的物理降溫好夥伴。</p>
+            </div>
+            <div class="p-7 bg-brandPistachio border-l-4 border-brandLime space-y-3">
+              <h4 class="text-xs font-bold tracking-wider text-brandDark flex items-center space-x-2">
+                <span class="text-brandLime font-serif text-lg">Q.</span>
+                <span>守宮的尾巴斷了會怎麼樣？</span>
+              </h4>
+              <p class="text-[11px] text-brandGray tracking-widest leading-relaxed font-light"><strong class="text-brandDark">A. 這是牠們的求生防衛機制「自割」。</strong> 遇到極度恐懼時守宮會斷尾求生，雖然會再長出來，但新尾巴通常會失去骨骼支撐且較圓鈍。斷尾對牠們的體力與營養消耗極大，因此互動時請務必溫柔，切勿大力拉扯、驚嚇牠們喔！</p>
             </div>
           </div>
-          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="150">
-            <span class="eyebrow">About</span>
-            <h2>讓畫面帶著溫度與故事感</h2>
-            <p>我相信插畫不只是裝飾，而是能讓人停下來、感受情緒並記住品牌訊息的方式。從角色設計到產品視覺，我喜歡用細膩的筆觸與柔和的色彩，打造具有辨識度的作品。</p>
-            <p>目前的創作方向包含人物插畫、品牌插圖、社群視覺與活動主視覺。我也很重視與客戶的溝通，讓每一次合作都能兼顧美感與目的性。</p>
-            <div class="skill-list">
-              <span>Procreate</span>
-              <span>Illustrator</span>
-              <span>Photoshop</span>
-              <span>Branding</span>
-              <span>Character Design</span>
+        </div>
+        <div class="lg:col-span-6 space-y-8 bg-brandPistachio/40 p-8 border border-brandDark/5">
+          <div class="inline-flex items-center space-x-3 text-xs tracking-widest text-brandDark font-bold uppercase">
+            <span class="w-2 h-2 bg-brandDark"></span>
+            <span>飼養前的「靈魂三問」</span>
+          </div>
+          <p class="text-[11px] text-brandGray tracking-widest leading-relaxed font-light">在被爬爬療癒、動了想帶一隻回家的念頭前，請以最溫柔且堅定的心情，誠實審視自己能否承擔起生命長河的重任：</p>
+          <div class="space-y-6 pt-4">
+            <div class="space-y-2">
+              <h5 class="text-xs font-bold tracking-widest flex items-center space-x-2 text-brandDark"><span class="text-brandLime">01.</span> <span>環境與設備的持續付出</span></h5>
+              <p class="text-[11px] text-brandGray tracking-wider leading-relaxed pl-6 font-light">特寵對環境的溫濕度、光照、通風要求極為嚴苛。你需要建構安全的防逃跑保溫箱，並全年無休監控環境。</p>
+            </div>
+            <div class="space-y-2">
+              <h5 class="text-xs font-bold tracking-widest flex items-center space-x-2 text-brandDark"><span class="text-brandLime">02.</span> <span>食物的考驗與日常照料</span></h5>
+              <p class="text-[11px] text-brandGray tracking-wider leading-relaxed pl-6 font-light">牠們大多需要餵食活體昆蟲（如蟑螂、蟋蟀）或冷凍乳鼠。你能接受冰箱中存有冷凍食材，或是在家中養一盒活蟲嗎？</p>
+            </div>
+            <div class="space-y-2">
+              <h5 class="text-xs font-bold tracking-widest flex items-center space-x-2 text-brandDark"><span class="text-brandLime">03.</span> <span>長達數十載的相伴承諾</span></h5>
+              <p class="text-[11px] text-brandGray tracking-wider leading-relaxed pl-6 font-light">守宮一般能活 10-15 年，球蟒更可活 20-30 年。在漫長的歲月中，無論升學、就業、搬家、結婚生子，你都能不離不棄，悉心相伴嗎？</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="portfolio-section" id="portfolio">
-      <div class="container">
-        <div class="section-heading" data-aos="fade-up">
-          <span class="eyebrow">Selected Works</span>
-          <h2>精選作品</h2>
+  <!-- Menu Section -->
+  <section id="menu" class="py-24 bg-brandPistachio/40 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center space-y-4 mb-20">
+        <span class="text-xs tracking-widest text-brandLime font-semibold uppercase">Menu / 療癒感茶點</span>
+        <h2 class="text-3xl font-bold tracking-widest">舌尖與視覺的綠色協奏曲</h2>
+        <p class="text-xs text-brandGray tracking-widest font-light">將特寵的自然色彩融入精緻調飲與甜點，品味慢活與精緻。</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div class="space-y-12">
+          <div class="group space-y-4">
+            <div class="flex justify-between items-end border-b border-brandDark/10 pb-2">
+              <h3 class="text-sm font-bold tracking-widest text-brandDark group-hover:text-brandLime transition-colors">苔綠時光 ‧ 抹茶小苔蘚提拉米蘇</h3>
+              <span class="font-serif text-sm tracking-widest font-semibold text-brandDark">$220</span>
+            </div>
+            <p class="text-xs text-brandGray tracking-widest leading-relaxed font-light">採用宇治小山園抹茶，堆疊出如同森林溫室裡、濕潤療癒的厚實苔蘚景致。微苦不甜膩，彷彿守宮最愛棲息的那片翠綠葉片，充滿自然層次感。</p>
+          </div>
+          <div class="group space-y-4">
+            <div class="flex justify-between items-end border-b border-brandDark/10 pb-2">
+              <h3 class="text-sm font-bold tracking-widest text-brandDark group-hover:text-brandLime transition-colors">球蟒之鱗 ‧ 爬爬主題漸層汽泡特調</h3>
+              <span class="font-serif text-sm tracking-widest font-semibold text-brandDark">$180</span>
+            </div>
+            <p class="text-xs text-brandGray tracking-widest leading-relaxed font-light">以新鮮奇異果泥、小黃瓜汁、薄荷葉與微氣泡水調和，呈現如同「香蕉球蟒」迷人鮮豔的黃綠色鱗片光澤。一口喝下，氣泡與草本香氣在口中輕柔跳躍。</p>
+          </div>
+          <div class="group space-y-4">
+            <div class="flex justify-between items-end border-b border-brandDark/10 pb-2">
+              <h3 class="text-sm font-bold tracking-widest text-brandDark group-hover:text-brandLime transition-colors">靜謐雨林 ‧ 經典職人手沖（精品豆）</h3>
+              <span class="font-serif text-sm tracking-widest font-semibold text-brandDark">$200</span>
+            </div>
+            <p class="text-xs text-brandGray tracking-widest leading-relaxed font-light">嚴選中淺烘焙的耶加雪菲。手沖釋放出茉莉花與柑橘的清甜香氣，帶著如同清晨雨林般的澄澈與純淨。佐以一杯慢條斯理的時間，最適合一邊發空，一邊與爬爬們對視。</p>
+          </div>
         </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-lg-4" data-aos="fade-up">
-            <article class="portfolio-card">
-              <img src="https://images.unsplash.com/photo-1515405295579-ba7b45403062?auto=format&fit=crop&w=900&q=80" alt="作品一：自然風插畫">
-              <div class="portfolio-card-body">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <h3>晨光系列</h3>
-                  <span>2026</span>
-                </div>
-                <p>以清晨光線與城市節奏為靈感，創作出溫柔又有層次感的插畫。</p>
-                <div class="tag-list">
-                  <span>Illustration</span>
-                  <span>Branding</span>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <article class="portfolio-card">
-              <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=900&q=80" alt="作品二：角色設計">
-              <div class="portfolio-card-body">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <h3>角色設計集</h3>
-                  <span>2025</span>
-                </div>
-                <p>角色性格與視覺語言結合的設計，強調細節與故事性。</p>
-                <div class="tag-list">
-                  <span>Character</span>
-                  <span>Concept</span>
-                </div>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <article class="portfolio-card">
-              <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="作品三：生活感設計">
-              <div class="portfolio-card-body">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                  <h3>生活感主視覺</h3>
-                  <span>2024</span>
-                </div>
-                <p>結合室內氛圍與生活美學，打造具有溫度的品牌插畫風格。</p>
-                <div class="tag-list">
-                  <span>Editorial</span>
-                  <span>Campaign</span>
-                </div>
-              </div>
-            </article>
+        <div class="relative flex justify-center items-center">
+          <div class="w-full max-w-md aspect-[4/5] bg-brandWhite p-8 shadow-md border border-brandDark/5 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute inset-4 border border-brandLime/20"></div>
+            <div class="relative z-10 text-left">
+              <span class="text-[9px] tracking-widest uppercase text-brandLime font-bold">Recommended Combination</span>
+              <h4 class="font-serif text-2xl font-light text-brandDark mt-2 tracking-widest">Quiet Tea Time</h4>
+              <p class="text-[11px] text-brandGray tracking-wider mt-1">一份京都宇治抹茶蛋糕與手沖咖啡，與軟萌球蟒共度的午後，是靜止時光裡的完美方程式。</p>
+            </div>
+            <div class="w-full h-full bg-cover bg-center border border-brandDark/5 relative z-10 my-4" style="background-image: url('/imgs/9.jpg');"></div>
+            <div class="relative z-10 text-right">
+              <span class="text-[10px] tracking-widest font-medium text-brandGray">※ 店內餐點研發均避免使用刺激性精油與氣味，確保爬爬健康安全。</span>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="contact-section" id="contact">
-      <div class="container">
-        <div class="contact-card" data-aos="zoom-in">
-          <span class="eyebrow">Contact</span>
-          <h2>歡迎合作與交流</h2>
-          <p>若你有插畫委託、品牌視覺或專案合作的需求，歡迎隨時聯絡我。</p>
-          <div class="contact-actions">
-            <a class="btn btn-primary btn-lg" href="mailto:hello@hana-studio.com">hello@hana-studio.com</a>
-            <a class="btn btn-outline-secondary btn-lg" href="#"><i class="fa-brands fa-instagram me-2"></i>Instagram</a>
+  <!-- Booking Section -->
+  <section id="booking" class="py-24 bg-brandWhite relative overflow-hidden editorial-grid">
+    <div class="absolute left-0 bottom-0 w-full h-1/3 bg-brandPistachio/40 z-0"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-3">
+            <span class="text-xs tracking-widest text-brandLime font-semibold uppercase">Visit Us / 預約與交通</span>
+            <h2 class="text-3xl font-bold tracking-widest leading-tight">放下生活喧囂，<br>與有溫度的生命同行。</h2>
+          </div>
+          <div class="space-y-6 text-sm text-brandGray tracking-widest leading-relaxed font-light">
+            <p>為了確保每一位來訪賓客與店內特寵孩子們，都能享有最舒適無壓、最高品質的溫和互動體驗，我們全面採取「預約審查制」。</p>
+            <div class="space-y-4 pt-4 text-xs border-t border-brandDark/10">
+              <div class="flex items-start space-x-3">
+                <i class="fa-regular fa-clock text-brandLime mt-1"></i>
+                <div>
+                  <h4 class="font-bold text-brandDark mb-1">營業時間 / OPENING HOURS</h4>
+                  <p class="font-serif">Wednesday — Sunday ( 13:00 — 20:00 )</p>
+                  <p class="text-[11px] text-brandGray mt-1">※ 每週一、二為爬爬休養與全店消毒日</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i class="fa-solid fa-location-dot text-brandLime mt-1"></i>
+                <div>
+                  <h4 class="font-bold text-brandDark mb-1">空間地址 / ADDRESS</h4>
+                  <p>台北市大安區新生南路綠意巷 7 號 1 樓</p>
+                  <p class="text-[11px] text-brandGray mt-1">捷運大安森林公園站 2 號出口，步行約 5 分鐘即可抵達</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="lg:col-span-7 bg-brandWhite border border-brandDark/5 p-8 shadow-lg max-w-2xl w-full">
+          <h3 class="text-xs tracking-widest uppercase font-bold text-brandDark border-b border-brandDark/10 pb-4 mb-6">Online Reservation / 線上預約申請</h3>
+          <form onsubmit="event.preventDefault(); document.getElementById('successModal').classList.remove('hidden');" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-[10px] tracking-widest text-brandGray uppercase block font-bold">真實姓名 / Name *</label>
+                <input type="text" required class="w-full bg-brandPistachio border-b border-brandDark/10 focus:border-brandLime py-3 px-4 text-xs tracking-widest outline-none transition-colors" placeholder="請輸入姓名">
+              </div>
+              <div class="space-y-2">
+                <label class="text-[10px] tracking-widest text-brandGray uppercase block font-bold">聯絡電話 / Phone *</label>
+                <input type="tel" required class="w-full bg-brandPistachio border-b border-brandDark/10 focus:border-brandLime py-3 px-4 text-xs tracking-widest outline-none transition-colors" placeholder="手機號碼">
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-[10px] tracking-widest text-brandGray uppercase block font-bold">預約日期 / Date *</label>
+                <input type="date" required class="w-full bg-brandPistachio border-b border-brandDark/10 focus:border-brandLime py-3 px-4 text-xs tracking-widest outline-none transition-colors">
+              </div>
+              <div class="space-y-2">
+                <label class="text-[10px] tracking-widest text-brandGray uppercase block font-bold">預約人數 / Guests *</label>
+                <select required class="w-full bg-brandPistachio border-b border-brandDark/10 focus:border-brandLime py-3 px-4 text-xs tracking-widest outline-none transition-colors">
+                  <option value="1">1 位 (單人放空)</option>
+                  <option value="2">2 位 (雙人慢行)</option>
+                  <option value="3">3 位 (小組探索)</option>
+                  <option value="4">4 位以上 (請提前於留言註明)</option>
+                </select>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] tracking-widest text-brandGray uppercase block font-bold">飼養或接觸經驗 / Experience *</label>
+              <div class="flex items-center space-x-6 text-xs tracking-wider pt-2">
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="radio" name="exp" checked class="accent-brandLime">
+                  <span>我是完全的新手，想溫柔認識</span>
+                </label>
+                <label class="flex items-center space-x-2 cursor-pointer">
+                  <input type="radio" name="exp" class="accent-brandLime">
+                  <span>我自己也有養爬爬，是資深家長</span>
+                </label>
+              </div>
+            </div>
+            <div class="pt-4">
+              <button type="submit" class="w-full bg-brandLime text-brandDark hover:bg-brandDark hover:text-brandWhite transition-colors duration-500 font-bold py-4 text-xs tracking-widest uppercase shadow-md">
+                遞交預約申請 / Submit Application
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </section>
-  </main>
+      <div class="text-center max-w-xl mx-auto pt-24 pb-8 space-y-4">
+        <span class="text-2xl font-serif italic text-brandLime">Busy Drinking Coffee</span>
+        <p class="text-xs text-brandGray tracking-[0.3em] uppercase leading-relaxed font-light">
+          在蟒蟒人海裡放空，治癒你的心靈。<br>
+          今天，暫時忘記所有的忙碌，走進這座綠意，<br>
+          與默默呼吸著的生命，一起溫柔慢活。
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> Hana. All rights reserved.</p>
+  <!-- Footer -->
+  <footer class="bg-brandDark text-brandWhite py-12 border-t border-brandWhite/5 text-xs tracking-widest">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+      <div class="flex flex-col items-center md:items-start space-y-2">
+        <span class="font-serif text-sm font-bold uppercase">Busy Drinking Coffee</span>
+        <span class="text-[10px] text-brandGray">© 2026 蟒著喝咖啡. All rights reserved.</span>
+      </div>
+      <div class="flex space-x-6 text-lg text-brandGray">
+        <a href="#" class="hover:text-brandLime transition-colors"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="hover:text-brandLime transition-colors"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#" class="hover:text-brandLime transition-colors"><i class="fa-brands fa-line"></i></a>
+      </div>
+      <div class="text-[10px] text-brandGray text-center md:text-right">
+        <span>我們不販售生命，只傳遞愛與正確的生命教育。</span>
+      </div>
     </div>
   </footer>
 
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Hana",
-      "jobTitle": "Illustrator",
-      "url": "https://example.com",
-      "sameAs": [
-        "https://github.com",
-        "https://www.linkedin.com"
-      ]
-    }
+  <!-- 成功預約彈窗 -->
+  <div id="successModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-brandDark/60 backdrop-blur-sm p-4">
+    <div class="bg-brandWhite p-8 max-w-sm w-full text-center space-y-6 border border-brandDark/10 shadow-2xl">
+      <div class="w-16 h-16 bg-brandPistachio rounded-full flex items-center justify-center text-brandLime text-2xl mx-auto">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <div class="space-y-2">
+        <h4 class="text-sm font-bold tracking-widest text-brandDark">預約申請已順利遞交</h4>
+        <p class="text-xs text-brandGray tracking-widest leading-relaxed">親愛的顧客，我們已收到您的邂逅申請。飼育專員將於 24 小時內傳送確認信函至您的聯絡信箱，請保持通訊暢通。</p>
+      </div>
+      <button onclick="document.getElementById('successModal').classList.add('hidden')" class="w-full bg-brandDark text-brandWhite hover:bg-brandLime hover:text-brandDark py-3 text-xs tracking-widest uppercase transition-colors duration-300">
+        好的，我很期待
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      const icon = mobileMenuBtn.querySelector('i');
+      if (mobileMenu.classList.contains('hidden')) {
+        icon.className = 'fa-solid fa-bars-staggered';
+      } else {
+        icon.className = 'fa-solid fa-xmark';
+      }
+    });
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuBtn.querySelector('i').className = 'fa-solid fa-bars-staggered';
+      });
+    });
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
